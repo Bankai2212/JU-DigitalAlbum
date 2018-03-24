@@ -1,0 +1,81 @@
+<head>
+  <meta charset="utf-8">
+  <title>JU-DigitalAlbum</title>
+</head>
+
+<body>
+  <div class="row">
+    <h1 class="col-xs-12 col-md-10">JU-DigitalAlbum</h1>
+    <div class="col-xs-12 col-md-2">
+      {{> loginButtons}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-3">
+      {{> addImageForm}}
+    </div>
+    <div class="col-xs-12 col-md-9">
+      {{> imageGallery}}
+    </div>
+  </div>
+</body>
+
+<template name="addImageForm">
+  {{#if currentUser}}
+    <form>
+      <div class="form-group">
+        <label class="control-label">Image Name: </label>
+        <input type="text" name="newImageName" class="form-control" placeholder="new image name" required/>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Image Path: </label>
+        <input type="text" name="newImagePath" class="form-control" placeholder="new image path" required/>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Description: </label>
+        <input type="text" name="newImageDescription" class="form-control" placeholder="new image description" required/>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Alternate Text: </label>
+        <input type="text" name="newImageAltText" class="form-control" placeholder="new image alternate text" required/>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Rating: </label>
+        {{> starsRating id='newImageRating' mutable=true size='lg'}}
+      </div>
+      <input type="submit" class="btn btn-success"/>
+    </form>
+  {{/if}}
+</template>
+
+<template name="imageGallery">
+  {{#unless currentUser}}
+    <h3>Please login before viewing the digital album.</h3>
+  {{/unless}}
+  {{#if currentUser}}
+    {{#if selectedUser}}
+      <div class="row" style="height: 40px">
+        <div class="col-xs-6 col-md-1">
+          <button class="back btn btn-primary">Back</button>
+        </div>
+        <div class="col-xs-6 col-md-11">
+          Images added by {{selectedUser}}
+        </div>
+      </div>
+    {{/if}}
+    <div class="row">
+      {{#each images}}
+        <div class="col-xs-12 col-md-3">
+          <div class="thumbnail">
+            <img src="{{imagePath}}" alt="{{imageAlt}}"/><br/>
+            <h4>{{imageName}}</h4>
+            User: <a href="#" class="user">{{createdBy}}</a><br/><br/>
+            <p>{{imageDesc}}</p>
+            {{> starsRating rating=rating size='lg'}}<br/>
+            <p>Added On: {{createdOn}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</template>

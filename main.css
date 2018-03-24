@@ -1,0 +1,6 @@
+/* CSS declarations go here */
+.thumbnail:hover{
+  transition-duration: 0.5s;
+  background-color: rgba(144, 202, 249, 0.7);
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,0.24), 0 10px 50px 0 rgba(0,0,0,0.19);
+}
