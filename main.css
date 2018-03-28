@@ -4,3 +4,45 @@
   background-color: rgba(144, 202, 249, 0.7);
   box-shadow: 0 5px 20px 0 rgba(0,0,0,0.24), 0 10px 50px 0 rgba(0,0,0,0.19);
 }
+
+button, input[type=submit] {
+  padding: 7px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  transition-duration: 0.5s;
+  border-radius: 20px;
+  border-color: #1976D2;
+  border-style: solid;
+  background-color: rgba(204,204,255,0.8);
+  color: #1976D2;
+  font-weight: bold;
+}
+
+button:hover, input[type=submit]:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,0.24), 0 10px 50px 0 rgba(0,0,0,0.19);
+  background-color: rgba(25,118,210,0.5);
+  color: white;
+}
+
+.logo {
+  font-family: Georgia, "Times New Roman";
+  font-style: italic;
+  color: #1A237E;
+  display: block;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.logo img {
+  width: 70px;
+  height: auto;
+}
+
+#imageGallery {
+	width: auto;
+  	height: 250px;
+}

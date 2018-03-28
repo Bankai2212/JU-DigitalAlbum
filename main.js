@@ -1,7 +1,14 @@
 ImageList = new Mongo.Collection('ImageList');
 
 if(Meteor.isClient){
+
   Template.addImageForm.events({
+    'click .addImage': function(){
+      Modal.show('imageFormModal');
+    }
+  });
+
+  Template.imageFormModal.events({
     'submit form': function(event){
       event.preventDefault();
       if($('#newImageRating').data('userrating') == undefined){
@@ -25,6 +32,34 @@ if(Meteor.isClient){
         event.target.newImageDescription.value = "";
         event.target.newImageAltText.value = "";
         $('#newImageRating').trigger('reset');
+        Modal.hide();
+      }
+    }
+  });
+
+  Template.editFormModal.events({
+    'submit form': function(event){
+      event.preventDefault();
+      if($('#newImageRating').data('userrating') == undefined){
+        alert("Please enter a rating.");
+      } else{
+        var imageData=Session.get("EditImageData");
+        var imageID=imageData._id;
+        var editImageName = event.target.editImageName.value;
+        var editImagePath = event.target.editImagePath.value;
+        var editImageDescription = event.target.editImageDescription.value;
+        var editImageAltText = event.target.editImageAltText.value;
+        var editImageRating = $('#newImageRating').data('userrating');
+        ImageList.update(imageID,{$set:{imageName: editImageName, imagePath: editImagePath,
+          imageDesc: editImageDescription, imageAlt: editImageAltText,
+          rating: editImageRating }});
+        alert("Image details edited!");
+        event.target.editImageName.value = "";
+        event.target.editImagePath.value = "";
+        event.target.editImageDescription.value = "";
+        event.target.editImageAltText.value = "";
+        $('#newImageRating').trigger('reset');
+        Modal.hide();
       }
     }
   });
@@ -41,6 +76,9 @@ if(Meteor.isClient){
       if(Session.get("SelectedUserID") != "" && Session.get("SelectedUserID") != undefined){
         return Session.get("SelectedUserName");
       }
+    },
+    'correctUser': function(){
+      return Meteor.userId()==this.userID;
     }
     /*
     'userName': function(userID){
@@ -58,6 +96,21 @@ if(Meteor.isClient){
     'click .back': function(){
       Session.set("SelectedUserID", "");
       Session.set("SelectedUserName", "");
+    },
+    'click .delete': function(){
+      var confirmation= confirm("Do you want to delete image \""+this.imageName+"\"?");
+      if (confirmation==true){
+        ImageList.remove(this._id);
+        alert("Image removed.");
+      }
+    },
+    'click .edit': function(){
+      Modal.show('editFormModal');
+      Session.set("EditImageData", this);
+      document.getElementById("editImageName").value=this.imageName;
+      document.getElementById("editImagePath").value=this.imagePath;
+      document.getElementById("editImageDescription").value=this.imageDesc;
+      document.getElementById("editImageAltText").value=this.imageAlt;
     }
   });
 }
