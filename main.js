@@ -2,6 +2,10 @@ ImageList = new Mongo.Collection('ImageList');
 
 if(Meteor.isClient){
 
+  Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_AND_OPTIONAL_EMAIL'
+  });
+
   Template.addImageForm.events({
     'click .addImage': function(){
       Modal.show('imageFormModal');
@@ -16,7 +20,7 @@ if(Meteor.isClient){
       } else{
         var userID = Meteor.userId();
         var email = Meteor.user().emails[0].address;
-        var createdBy = email.slice(0, email.indexOf("@"));
+        var createdBy = Meteor.user().username;
         var newImageName = event.target.newImageName.value;
         var newImagePath = event.target.newImagePath.value;
         var newImageDescription = event.target.newImageDescription.value;

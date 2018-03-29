@@ -1,8 +1,23 @@
 /* CSS declarations go here */
 .thumbnail:hover{
   transition-duration: 0.5s;
-  background-color: rgba(144, 202, 249, 0.7);
+  background-color: #FFE57F;
   box-shadow: 0 5px 20px 0 rgba(0,0,0,0.24), 0 10px 50px 0 rgba(0,0,0,0.19);
+}
+
+.thumbnail{
+  background-color: rgba(255, 245, 218, 1.0);
+  
+}
+
+.col-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.col {
+  flex: 1;
+  padding: 16px;
 }
 
 button, input[type=submit] {
@@ -11,24 +26,24 @@ button, input[type=submit] {
   margin-right: auto;
   transition-duration: 0.5s;
   border-radius: 20px;
-  border-color: #1976D2;
+  border-color: #C62828;
   border-style: solid;
-  background-color: rgba(204,204,255,0.8);
-  color: #1976D2;
+  background-color: #FF8A80;
+  color: #C62828;
   font-weight: bold;
 }
 
 button:hover, input[type=submit]:hover {
   cursor: pointer;
   box-shadow: 0 5px 20px 0 rgba(0,0,0,0.24), 0 10px 50px 0 rgba(0,0,0,0.19);
-  background-color: rgba(25,118,210,0.5);
+  background-color: #D50000;
   color: white;
 }
 
 .logo {
   font-family: Georgia, "Times New Roman";
   font-style: italic;
-  color: #1A237E;
+  color: #6A1B9A;
   display: block;
   font-size: 40px;
   font-style: italic;
