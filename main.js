@@ -19,7 +19,6 @@ if(Meteor.isClient){
         alert("Please enter a rating.");
       } else{
         var userID = Meteor.userId();
-        var email = Meteor.user().emails[0].address;
         var createdBy = Meteor.user().username;
         var newImageName = event.target.newImageName.value;
         var newImagePath = event.target.newImagePath.value;
@@ -84,12 +83,6 @@ if(Meteor.isClient){
     'correctUser': function(){
       return Meteor.userId()==this.userID;
     }
-    /*
-    'userName': function(userID){
-      var email = Meteor.users.findOne(userID).emails[0].address;
-      return email;
-    }
-    */
   });
 
   Template.imageGallery.events({

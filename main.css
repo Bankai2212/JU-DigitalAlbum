@@ -1,13 +1,13 @@
 /* CSS declarations go here */
 .thumbnail:hover{
-  transition-duration: 0.5s;
   background-color: #FFE57F;
   box-shadow: 0 5px 20px 0 rgba(0,0,0,0.24), 0 10px 50px 0 rgba(0,0,0,0.19);
+  border-color: #FFB300;
 }
 
 .thumbnail{
   background-color: rgba(255, 245, 218, 1.0);
-  
+  border-radius: 30px;
 }
 
 .col-container {
@@ -38,6 +38,15 @@ button:hover, input[type=submit]:hover {
   box-shadow: 0 5px 20px 0 rgba(0,0,0,0.24), 0 10px 50px 0 rgba(0,0,0,0.19);
   background-color: #D50000;
   color: white;
+}
+
+button:hover .login-link-text{
+  color: white;
+  transition-duration: 0.5s;
+}
+
+button .login-link-text{
+  color: #C62828;
 }
 
 .logo {
